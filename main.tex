@@ -1,0 +1,768 @@
+%\documentclass[a4paper,oneside,12pt,draft]{book} % ไม่เอาภาพ
+\documentclass[a4paper,oneside,12pt]{book}
+\usepackage{geometry}
+\geometry{top=15mm, left=10mm, right=10mm, bottom=15mm}
+\usepackage{amsmath}  % สำคัญมาก: ช่วยให้ใช้งานคำสั่ง \text{} ในสูตรคณิตศาสตร์ได้
+\usepackage{amssymb}  % ช่วยเพิ่มสัญลักษณ์คณิตศาสตร์อื่นๆ
+\usepackage{fontspec}
+\usepackage{xltxtra}
+%\usepackage{polyglossia}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+
+\usepackage[edges]{forest} % เพิ่ม [edges] เพื่อใช้การหักมุมเส้นแบบฉาก % แพ็กเกจสำหรับวาดแผนผังต้นไม้ที่ง่ายและสวยงาม
+
+% ----------  คำสั่งหารสั้น หารยาว ----------
+\usepackage{longdivision}
+\usepackage{polynom}
+
+% ----------  \begin{enumerate}[label*=\arabic*.]----------
+\usepackage{enumitem}
+
+
+% ----------  ตาราง tabularx ----------
+\usepackage{booktabs}        % สำหรับเส้นตารางที่สวยงาม (Toprule, Midrule, Bottomrule)
+\usepackage{tabularx}
+\usepackage{cellspace}
+\setlength\cellspacetoplimit{6pt}
+\setlength\cellspacebottomlimit{6pt}
+% เพิ่มบรรทัดนี้ เพื่อสร้างคอลัมน์ X ที่มีช่องว่างบน-ล่างของ cellspace ด้วย
+\newcolumntype{Y}{>{\CellspaceLengthMethod\string\everymath{\displaystyle}}S{X}}
+
+
+
+\usepackage{varwidth} % <--- 🌟 พระเอกของงานนี้ ต้องใส่ตัวนี้นะครับ
+\usepackage{ragged2e}
+
+% ----------แทรกรูปให้ล๊อคตำแหน่ง ----------
+\usepackage{caption}
+%\captionsetup[figure]{name=Figure}
+\usepackage{graphicx} % สำหรับแทรกรูป
+\usepackage{float}    % <-- อันนี้สำคัญ
+
+
+\usepackage{array}
+\usepackage{multicol}
+\usepackage{cellspace} % ช่วยเพิ่มช่องว่างบน-ล่างให้เซลล์อัตโนมัติ
+\setlength\cellspacetoplimit{6pt}
+\setlength\cellspacebottomlimit{6pt}
+
+
+\renewcommand{\chaptername}{บทที่}
+\renewcommand{\contentsname}{สารบัญ}
+\renewcommand{\figurename}{รูปที่}
+
+% ตั้งค่าฟอนต์ Mathematics
+%\usepackage{unicode-math}
+%\usepackage{gfsneohellenicot}
+%\usepackage{unicode-math} 
+%\setmainfont{GFS Neohellenic}[Scale=1.3]
+%\setmathfont{GFS Neohellenic Math}[Scale=1.3]
+% ตั้งค่าฟอนต์หลักเป็น GFS Neohellenic สำหรับภาษาอังกฤษ
+
+
+
+\DeclareMathSizes{12}{14}{10}{7} % ใช้ปรับขนาดฟอนต์ Math
+\usepackage{concmath}
+\usepackage[OT1]{fontenc}
+
+
+%\usepackage{pxfonts}
+%\usepackage[T1]{fontenc}
+
+% ---- math operators ----
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccosec}{arccosec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\cosec}{cosec}
+
+
+% --- ส่วนตั้งค่าคำสั่งสำหรับ Case ---
+\newcounter{casecounter}
+\newcounter{subcasecounter}[casecounter]
+
+% ตั้งค่าการแสดงผลตัวเลข
+\renewcommand{\thecasecounter}{\arabic{casecounter}}
+\renewcommand{\thesubcasecounter}{\thecasecounter.\arabic{subcasecounter}}
+
+% คำสั่ง \case (ตัวหนาปกติ)
+\newcommand{\case}{%
+	\stepcounter{casecounter}%
+	\par\vspace{0.5em}\noindent\textbf{\underline{กรณีที่ \thecasecounter}:}\,
+}
+
+% คำสั่ง \subcase (ตัวเอียง)
+\newcommand{\subcase}{%
+	\stepcounter{subcasecounter}%
+	\par\noindent\hspace{2em}\textit{\textbf{กรณีย่อยที่ \thesubcasecounter:}}\,
+}
+
+% คำสั่ง \newcase เพื่อรีเซ็ตเลขกรณีให้เริ่ม 1 ใหม่
+\newcommand{\newcase}{%
+	\setcounter{casecounter}{0}%
+	\setcounter{subcasecounter}{0}%
+}
+
+%\setdefaultlanguage{thai}
+%\setotherlanguage{english}
+
+% ตั้งค่าฟอนต์
+\setmainfont[
+Extension = .ttf,
+UprightFont = THSarabunNew,
+BoldFont = THSarabunNew Bold,
+ItalicFont = THSarabunNew Italic,
+BoldItalicFont = THSarabunNew BoldItalic,
+Scale = 1.5
+]{THSarabunNew}
+
+\newfontfamily\thaifont[
+Extension = .ttf,
+UprightFont = THSarabunNew,
+BoldFont = THSarabunNew Bold,
+ItalicFont = THSarabunNew Italic,
+BoldItalicFont = THSarabunNew BoldItalic,
+Scale = 1.5
+]{THSarabunNew}
+
+
+\XeTeXlinebreaklocale "th"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\makeatletter
+% [ส่วนที่ 1] สไตล์ CHAPTER
+\newcommand{\drawchapterbox}[1]{%
+	\begin{tcolorbox}[
+		enhanced,                      % จำเป็นสำหรับการใช้ shadow
+		colback=white, 
+		colframe=black, 
+		sharp corners, 
+		boxrule=1.5pt, 
+		halign=flush center, 
+		top=22pt, bottom=22pt, left=15pt, right=15pt, 
+		before skip=0pt, after skip=0pt,
+		% --- เพิ่มส่วนของเงา ---
+		shadow={2mm}{-2mm}{0mm}{black!30}, 
+		% หมายเหตุ: {2mm} คือเลื่อนขวา, {-2mm} คือเลื่อนลง, {0mm} คือความฟุ้ง, {black!30} คือสีเงา
+		]
+		\centering
+		\ifnum\value{chapter}>0
+		{\huge\bfseries\chaptername~\thechapter}\par\vspace{15pt} 
+		\fi
+		{\Huge\bfseries #1}
+	\end{tcolorbox}
+}
+\titleformat{\chapter}[block]{\normalfont}{}{0pt}{\drawchapterbox}
+\titlespacing*{\chapter}{0pt}{0pt}{8pt}
+\assignpagestyle{\chapter}{empty}
+
+% ==================================================
+% [ส่วนที่ 2] สีและสไตล์กล่องสำหรับ SECTION / SUBSECTION
+% ==================================================
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+% นิยามเฉดสีธีม Deep Navy & Slate สไตล์อินเตอร์เนชันแนล
+\definecolor{TopNavy}{RGB}{31, 58, 98}
+\definecolor{SubSlate}{RGB}{90, 105, 120}
+
+% 1. แถบหัวข้อหลัก (Section): แถบริบบิ้นทึบพาดเต็มหน้าลอยละมุน
+\newtcolorbox{sectionfullbox}[1][]{
+	enhanced, breakable,
+	colback=TopNavy,                
+	colframe=TopNavy,
+	boxrule=0pt, sharp corners,
+	left=15pt, right=15pt, top=8pt, bottom=8pt,
+	fontupper=\Large\bfseries\color{white}, 
+	fuzzy shadow={0mm}{-1mm}{0mm}{1mm}{black!15}, 
+	before upper={\RaggedRight\hspace{0pt}},
+	#1
+}
+
+% 2. แถบหัวข้อย่อย (Subsection): เปิดขอบซ้ายหนา 4pt ด้านอื่นโล่ง สยบปัญหาคำตก
+\newtcolorbox{subsectiontitlebox}[1][]{
+	enhanced, breakable,
+	colback=SubSlate!6!white,       
+	colframe=SubSlate,
+	boxrule=0pt, leftrule=4pt,      
+	sharp corners,
+	left=12pt, right=15pt, top=6pt, bottom=6pt, 
+	fontupper=\large\bfseries\color{SubSlate!90!black},
+	before upper={\RaggedRight\hspace{0pt}},
+	#1
+}
+
+% ==================================================
+% [ส่วนที่ 3] โครงสร้างระบบลอจิกอัตโนมัติ (เวอร์ชันขยับระยะกระชับเนี๊ยบ)
+% ==================================================
+\makeatletter
+
+% --- ตั้งค่าระยะ Padding ของกล่องนอก ---
+\newlength\SectionPad
+\setlength{\SectionPad}{24pt}
+\newlength\SubsectionPad
+\setlength{\SubsectionPad}{20pt}
+
+% --- SECTION SYSTEM ---
+\renewcommand{\section}{\@ifstar{\sectionstar}{\sectionnormal}}
+
+\newcommand{\sectionnormal}[1]{%
+	\refstepcounter{section}%
+	\addcontentsline{toc}{section}{\protect\numberline{\thesection}#1}%
+	\markright{\thesection\ #1}%
+	\begingroup
+	\vspace{12pt}%      % ปรับลดระยะเหนือกหัวข้อใหญ่เล็กน้อยเพื่อความสมดุล
+	\begin{sectionfullbox}[hbox, before upper={\RaggedRight}]
+		\begin{varwidth}{\dimexpr\linewidth-\SectionPad\relax}
+			\noindent
+			\Large\bfseries \thesection\hspace{0.5em}#1
+		\end{varwidth}
+	\end{sectionfullbox}
+	\par\endgroup
+	\vspace{4pt}%       % 🛠️ จุดสำคัญ: ลดระยะท้าย Section ลงเหลือ 4pt (จากเดิม 10pt) เพื่อดึงขอบล่างขยับชิดขึ้น
+	\@afterheading%
+}
+
+\newcommand{\sectionstar}[1]{%
+	\begingroup
+	\vspace{12pt}%
+	\begin{sectionfullbox}[hbox, before upper={\RaggedRight}]
+		\begin{varwidth}{\dimexpr\linewidth-\SectionPad\relax}
+			\noindent
+			\Large\bfseries #1
+		\end{varwidth}
+	\end{sectionfullbox}
+	\par\endgroup
+	\vspace{4pt}%       % 🛠️ ลดระยะท้ายลงเหลือ 4pt เช่นกัน
+	\@afterheading
+}
+
+% --- SUBSECTION SYSTEM ---
+\renewcommand{\subsection}{\@ifstar{\subsectionstar}{\subsectionnormal}}
+
+\newcommand{\subsectionnormal}[1]{%
+	\refstepcounter{subsection}%
+	\addcontentsline{toc}{subsection}{\protect\numberline{\thesubsection}#1}%
+	\begingroup
+	% 🛠️ จุดสำคัญ: แก้ไขลอจิกเช็คระยะห่าง ถ้าเกิดตามหลัง \section ทันที ให้ลดแรงดีดแนวตั้งเหลือแค่ 2pt 
+	\ifnum\value{subsection}=1
+	\vspace{2pt}%
+	\else
+	\vspace{8pt}%   % ถ้าเป็นหัวข้อย่อยถัด ๆ ไปในเนื้อหาปกติ ให้เว้นระยะห่างตามมาตรฐานพอดี ๆ
+	\fi
+	\begin{subsectiontitlebox}[hbox, before upper={\RaggedRight}]
+		\begin{varwidth}{\dimexpr\linewidth-\SubsectionPad\relax}
+			\noindent
+			\large\bfseries \thesubsection\hspace{0.5em}#1
+		\end{varwidth}
+	\end{subsectiontitlebox}
+	\par\endgroup
+	\vspace{6pt}%       % ปรับระยะก่อนเริ่มเนื้อหาบทเรียนให้กระชับพอดีสายตา
+	\@afterheading
+}
+
+\newcommand{\subsectionstar}[1]{%
+	\begingroup
+	\vspace{6pt}%
+	\begin{subsectiontitlebox}[hbox, before upper={\RaggedRight}]
+		\begin{varwidth}{\dimexpr\linewidth-\SubsectionPad\relax}
+			\noindent
+			\large\bfseries #1
+		\end{varwidth}
+	\end{subsectiontitlebox}
+	\par\endgroup
+	\vspace{6pt}%
+	\@afterheading
+}
+
+\makeatother
+% ==========================================
+% 4. ระบบกล่องข้อความคณิตศาสตร์ (tcolorbox)
+% ==========================================
+\definecolor{brilliantlavender}{rgb}{0.75, 0.58, 0.89}
+\definecolor{darkseagreen}{rgb}{0.56, 0.74, 0.56}
+\definecolor{magentaprocess}{rgb}{1.0, 0.0, 0.56} 
+\definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
+
+\newcounter{definition}[chapter]
+\renewcommand{\thedefinition}{\thechapter.\arabic{definition}}
+
+\newcounter{theorem}[chapter]
+\renewcommand{\thetheorem}{\thechapter.\arabic{theorem}}
+
+\newcounter{example}[chapter]
+\renewcommand{\theexample}{\thechapter.\arabic{example}}
+
+\newcounter{remark}[chapter]
+\renewcommand{\theremark}{\thechapter.\arabic{remark}}
+
+\newcounter{agreement}[chapter]
+\renewcommand{\theagreement}{\thechapter.\arabic{agreement}}
+
+\newcounter{observation}[chapter]
+\renewcommand{\theobservation}{\thechapter.\arabic{observation}}
+
+\newcounter{concept}[chapter]
+\renewcommand{\theconcept}{\thechapter.\arabic{concept}}
+
+% ==========================================
+% 5. สภาพแวดล้อมกล่องแบบต่าง ๆ (Environments)
+% ==========================================
+
+\newenvironment{definitionbox}[1][]{%
+	\refstepcounter{definition}%
+	\begin{tcolorbox}[
+		enhanced, breakable, before skip=10pt, after skip=10pt,     
+		colback=magenta!5!white, colframe=magenta!80!black, fonttitle=\bfseries,
+		coltitle=white, colbacktitle=magenta!80!black,
+		attach boxed title to top left={yshift=-2mm, xshift=2mm},
+		boxed title style={sharp corners, size=small, colframe=magenta!80!black, colback=magenta!80!black},
+		sharp corners, boxrule=1.2pt, arc=0mm, shadow={3.5mm}{-2mm}{0mm}{black!20}, 
+		title={\textcolor{white}{บทนิยาม~\thedefinition\if\relax\detokenize{#1}\relax\else: #1\fi}},
+		]
+	}{%
+	\end{tcolorbox}
+}
+
+% นิยามสีแดงทับทิมเข้ม
+\definecolor{TheoremRed}{RGB}{166, 25, 46}
+
+\newenvironment{theorembox}[1][]{%
+	\refstepcounter{theorem}%
+	\begin{tcolorbox}[
+		enhanced, breakable, before skip=10pt, after skip=10pt,     
+		colback=TheoremRed!5!white,       % พื้นหลังสีชมพูจางมากๆ สบายตา
+		colframe=TheoremRed,              % สีเส้นขอบกล่องหลัก
+		fonttitle=\bfseries,
+		coltitle=white, 
+		colbacktitle=TheoremRed,
+		attach boxed title to top left={yshift=-2mm, xshift=3.5mm},
+		boxed title style={sharp corners, size=small, colframe=TheoremRed, colback=TheoremRed},
+		sharp corners, 
+		boxrule=1.2pt, arc=0mm, 
+		shadow={3.5mm}{-2mm}{0mm}{black!15}, % ปรับเงาให้นุ่มนวลขึ้นเล็กน้อยด้วย black!15
+		title={\textcolor{white}{ทฤษฎีบท~\thetheorem\if\relax\detokenize{#1}\relax\else: #1\fi}},
+		]
+	}{%
+	\end{tcolorbox}
+}
+
+\definecolor{ExampleOrange}{RGB}{184, 78, 34}       % สีส้มอิฐพรีเมียม ตัดสีกรมท่าและทองได้เด่นชัดมาก
+\definecolor{ExampleOrangeBg}{RGB}{255, 248, 245}   % พื้นหลังสีส้มพาสเทลจาง ๆ สบายตา
+
+\newenvironment{examplebox}[1][]{%
+	\refstepcounter{example}%
+	\if\relax\detokenize{#1}\relax \def\mytitle{ตัวอย่าง~\theexample}%
+	\else \def\mytitle{ตัวอย่าง~\theexample: #1}\fi
+	\begin{tcolorbox}[
+		enhanced, breakable, before skip=14pt, after skip=14pt,
+		colback=ExampleOrangeBg,
+		colframe=ExampleOrange,
+		fonttitle=\bfseries\small, 
+		coltitle=white, 
+		colbacktitle=ExampleOrange,   
+		attach boxed title to top left={yshift=-2mm, xshift=5mm},
+		boxed title style={
+			sharp corners, 
+			size=small, 
+			colframe=ExampleOrange, 
+			colback=ExampleOrange,
+			boxrule=0pt,
+			arc=1mm, % ให้ขอบป้ายมนเล็กน้อยเพื่อเพิ่มมิติด้านดีไซน์
+			top=3pt, bottom=3pt, left=8pt, right=8pt
+		},
+		sharp corners, 
+		boxrule=0.5pt, % เส้นกรอบบางลงเพื่อให้ดูคลีนและโปร่งตาขึ้น
+		title={\textcolor{white}{\mytitle}},
+		fuzzy shadow={0mm}{-0.5mm}{0mm}{0.5mm}{black!6}
+		]
+	}{%
+	\end{tcolorbox}
+}
+
+% --- เวอร์ชันความยาวเต็มหน้า (exampleboxfull) ---
+\newenvironment{exampleboxfull}[1][]{%
+	\refstepcounter{example}%
+	\if\relax\detokenize{#1}\relax \def\exampletitle{ตัวอย่าง~\theexample}%
+	\else \def\exampletitle{ตัวอย่าง~\theexample: #1}\fi
+	\begin{tcolorbox}[
+		enhanced, breakable, height fill, before skip=14pt, after skip=14pt,
+		colback=ExampleOrangeBg,
+		colframe=ExampleOrange,
+		fonttitle=\bfseries\small, coltitle=white, colbacktitle=ExampleOrange,
+		attach boxed title to top left={yshift=-2mm, xshift=5mm},
+		boxed title style={sharp corners, size=small, colframe=ExampleOrange, colback=ExampleOrange, boxrule=0pt, arc=1mm, top=3pt, bottom=3pt, left=8pt, right=8pt},
+		sharp corners, boxrule=0.5pt,
+		title={\textcolor{white}{\exampletitle}},
+		fuzzy shadow={0mm}{-0.5mm}{0mm}{0.5mm}{black!6}
+		]
+	}{%
+	\end{tcolorbox}
+}
+
+\newenvironment{remarkbox}[1][]{%
+	\refstepcounter{remark}%
+	\begin{tcolorbox}[
+		enhanced, breakable, before skip=10pt, after skip=10pt,     
+		colback=brilliantlavender!10!white, % ปรับพื้นหลังให้อมม่วงพาสเทลลอยละมุนชัดขึ้นเล็กน้อย (!10)
+		colframe=brilliantlavender!80!black, % สีหลักของกล่องหัวเรื่อง (ผสมดำเพื่อให้อ่านตัวหนังสือสีขาวง่าย)
+		fonttitle=\bfseries, coltitle=white, 
+		colbacktitle=brilliantlavender!80!black, 
+		attach boxed title to top center={yshift=-2mm}, % ปรับตำแหน่งหัวข้อให้อยู่ตรงกลางพอดี
+		boxed title style={sharp corners, size=small, colframe=brilliantlavender!80!black, colback=brilliantlavender!80!black},
+		sharp corners, 
+		% จุดเปลี่ยนดีไซน์: ลบคำสั่ง frame code เส้นประเดิมออกทั้งหมด และสั่ง boxrule=0pt เพื่อให้กล่องไร้ขอบ
+		boxrule=0pt,
+		title={\textcolor{white}{ข้อควรรู้~\theremark\if\relax\detokenize{#1}\relax\else: #1\fi}},
+		]
+	}{%
+	\end{tcolorbox}
+}
+
+\definecolor{AgreeBurnt}{RGB}{194, 91, 39}
+
+\newenvironment{agreementbox}[1][]{%
+	\refstepcounter{agreement}%
+	\begin{tcolorbox}[
+		enhanced, breakable, before skip=10pt, after skip=10pt,     
+		colback=AgreeBurnt!8!white, 
+		colframe=AgreeBurnt, 
+		fonttitle=\bfseries, coltitle=white, 
+		colbacktitle=AgreeBurnt, 
+		attach boxed title to top center={yshift=-2mm},
+		boxed title style={sharp corners, size=small, colframe=AgreeBurnt, colback=AgreeBurnt},
+		sharp corners, 
+		% 🛠️ จุดเด่นดีไซน์: ไร้ขอบ (0pt) แต่สาดเงาสีเบจเข้มเยื้องลงไปด้านล่างขวาแทน
+		boxrule=0pt,
+		shadow={3mm}{-2mm}{0mm}{AgreeBurnt!20!white},
+		title={\textcolor{white}{ข้อตกลง~\theagreement\if\relax\detokenize{#1}\relax\else: #1\fi}},
+		]
+	}{%
+	\end{tcolorbox}
+}
+
+\definecolor{ObserveBlue}{RGB}{41, 128, 185}
+\newenvironment{observationbox}[1][]{%
+	\refstepcounter{observation}%
+	\begin{tcolorbox}[
+		enhanced, breakable, before skip=10pt, after skip=10pt,     
+		colback=ObserveBlue!5!white, 
+		fonttitle=\bfseries, coltitle=white, 
+		colbacktitle=ObserveBlue, 
+		attach boxed title to top center={yshift=-1.5mm},
+		boxed title style={sharp corners, size=small, colframe=ObserveBlue, colback=ObserveBlue},
+		sharp corners, boxrule=0pt, arc=0mm,
+		title={\textcolor{white}{ข้อสังเกต~\theobservation\if\relax\detokenize{#1}\relax\else: #1\fi}},
+		frame code={
+			\draw[dash pattern=on 4pt off 3pt, line width=1.5pt, color=ObserveBlue] 
+			(frame.south west) rectangle (frame.north east);
+		}
+		]
+	}{%
+	\end{tcolorbox}
+}
+
+
+\definecolor{ConceptGold}{RGB}{201, 138, 34}      % สีทองหรูสำหรับเน้นจุดสำคัญ
+\definecolor{ConceptGoldBg}{RGB}{254, 251, 242}
+\newenvironment{conceptbox}[1][]{%
+	\refstepcounter{concept}%
+	\begin{tcolorbox}[
+		enhanced, breakable,
+		before skip=14pt, after skip=14pt,
+		colback=ConceptGoldBg,              % พื้นหลังครีมงาช้างเดิม
+		colframe=ConceptGold,               % เส้นหลักสีทอง
+		sharp corners,
+		% 🛠️ Layout: เปิดเฉพาะเส้นขอบซ้ายหนา 4pt ด้านอื่นปล่อยโล่งไร้เส้นขอบ
+		boxrule=0pt, leftrule=4pt,
+		left=12pt, right=12pt, top=10pt, bottom=10pt,
+		% 🛠️ ใช้คำสั่ง overlay เพื่อสร้างป้ายหัวเรื่องแบบโมเดิร์นชิดขอบซ้ายในกล่อง
+		title={หลักการ~\theconcept\if\relax\detokenize{#1}\relax\else: #1\fi},
+		attach title to upper,
+		fonttitle=\bfseries\color{ConceptGold}, % สีตัวอักษรหัวเรื่องเป็นสีทองเด่น
+		after title={\par\medskip\noindent},    % สั่งขึ้นบรรทัดใหม่เว้นระยะหลังจากป้ายชื่ออย่างสวยงาม
+		fuzzy shadow={0mm}{-0.5mm}{0mm}{0.5mm}{black!6}
+		]
+	}{%
+	\end{tcolorbox}
+}
+
+
+\newtcolorbox{mysolution}{
+	enhanced,
+	colback=white,             % สีพื้นหลังในกล่อง
+	colframe=black,            % สีขอบกล่อง
+	boxrule=0.8pt,             % ความหนาของเส้นขอบ
+	sharp corners,             % มุมฉาก (ถ้าต้องการมุมมนให้แก้เป็น arc=2mm)
+	shadow={1.5mm}{-1.5mm}{0mm}{black!30}, % เงาสีดำ
+	before skip=10pt, 
+	after skip=10pt,
+	left=10pt, right=10pt, top=10pt, bottom=10pt,
+	title={\bfseries วิธีทำ},
+	coltitle=black,            % สีตัวอักษร "วิธีทำ"
+	attach boxed title to top left={yshift=-2mm, xshift=2mm},
+	boxed title style={
+		colback=white,         % พื้นหลังของป้าย "วิธีทำ"
+		colframe=white,        % ซ่อนขอบป้ายเพื่อให้กลืนไปกับกรอบ
+		sharp corners
+	}
+}
+
+\makeatother
+
+% เปลี่ยนชื่อเป็น \mysol
+% วางไว้ใน Preamble ของคุณ (ข้างนอก \makeatletter)
+\newcommand{\solution}{%
+	\tcbox[
+	enhanced,
+	on line,
+	arc=0pt,
+	outer arc=0pt,
+	colback=white,
+	colframe=black,
+	fontupper=\bfseries,
+	coltext=black,
+	boxrule=0.8pt,
+	left=4pt, right=4pt, top=2pt, bottom=2pt,
+	shadow={1mm}{-1mm}{0mm}{black!30},
+	% เพิ่มบรรทัดนี้ครับ: เว้นระยะห่างจากกล่องไปยังตัวหนังสือที่อยู่ถัดไป
+	after={\hspace{0.5em}} 
+	]{วิธีทำ}%
+}
+
+\newcommand{\proof}{%
+	\tcbox[
+	enhanced,
+	on line,
+	arc=0pt,
+	outer arc=0pt,
+	colback=blue!5!white,      % สีพื้นหลังเป็นสีฟ้าอ่อนๆ ให้ดูสบายตา (หรือเปลี่ยนเป็น white ได้ครับ)
+	colframe=blue!60!black,    % สีเส้นขอบเป็นสีฟ้าเข้ม
+	fontupper=\bfseries,
+	coltext=blue!60!black,     % สีตัวหนังสือ "พิสูจน์" เป็นสีฟ้าเข้ม
+	boxrule=0.8pt,
+	left=4pt, right=4pt, top=2pt, bottom=2pt,
+	shadow={1mm}{-1mm}{0mm}{blue!20}, % เงาสีฟ้าจางๆ ให้เข้าธีมกัน
+	after={\hspace{0.5em}} 
+	]{พิสูจน์}%
+}
+% =========================
+% Solution Box
+% =========================
+% --- สี ---
+\definecolor{cornsilk}{rgb}{1.0,0.97,0.86}
+\definecolor{cornsilk_dark}{RGB}{180,160,120}
+
+\newtcolorbox{solutionbox}{
+	breakable,
+	
+	colback=cornsilk!40,
+	colframe=cornsilk_dark!60,
+	
+	boxrule=0.8pt,
+	
+	arc=1.5mm,
+	
+	left=10pt,
+	right=10pt,
+	top=12pt,
+	bottom=10pt,
+	
+	before skip=15pt,
+	after skip=15pt,
+	
+	title=วิธีทำ,
+	
+	colbacktitle=cornsilk_dark!90,
+	coltitle=white,
+	
+	fonttitle=\bfseries\small,
+	
+	attach boxed title to top left={
+		xshift=8pt,
+		yshift=-2mm
+	},
+	
+	boxed title style={
+		sharp corners
+	}
+}
+
+
+\definecolor{cambridgeblue}{HTML}{A3C1AD} % กำหนดสีด้วยรหัส HEX
+\tcbuselibrary{breakable,skins}
+\definecolor{planblue}{rgb}{0.86,0.93,0.96}
+\newtcolorbox{planbox}{
+	breakable,
+	enhanced,
+	colback=planblue,
+	colframe=cyan!50!black,
+	boxrule=0.7pt,
+	arc=2mm,
+	left=10pt,
+	right=10pt,
+	top=8pt,
+	bottom=8pt,
+	before skip=10pt,
+	after skip=10pt
+}
+
+\newcommand{\remark}{\noindent\textbf{\textcolor{red}{หมายเหตุ}}\,\,}
+\newcommand{\observation}{\noindent\textbf{\textcolor{blue}{ข้อสังเกต}}\,\,}
+%\definecolor{darkblue}{HTML}{004080} % กำหนดสีฟ้าเข้มเอง
+%\newcommand{\proof}{\noindent\textbf{\textcolor{darkblue}{พิสูจน์:}}\,\,}
+
+% ==========================================
+% เริ่มต้นเนื้อหาเอกสารหลัก
+% ==========================================
+\begin{document}
+% ---------------- --------------------------
+% หน้าปก (Title Page) - ปรับปรุงเพิ่มการอ้างอิง สสวท. ท้ายปก
+% ------------------------------------------
+\begin{titlepage}
+	\centering
+	
+	% ===== กำหนดสี =====
+	\definecolor{coverblue}{HTML}{7A9D8B}
+	\definecolor{covergray}{HTML}{2D2D2D}
+	
+	% --------------------------------------------------
+	% โลโก้
+	% --------------------------------------------------
+	\vspace*{1.2cm}
+	
+	\begin{minipage}{0.9\textwidth}
+		\centering
+		\includegraphics[height=3.0cm]{kku}
+		\hspace{1.5cm}
+		\includegraphics[height=3.0cm]{satitkkunkc.jpg}
+	\end{minipage}
+	
+	\vfill
+	
+	% --------------------------------------------------
+	% ชื่อเอกสาร
+	% --------------------------------------------------
+	\begin{minipage}{0.85\textwidth}
+		\noindent
+		\begin{tabular}{!{\color{coverblue}\vrule width 5pt} p{\dimexpr\textwidth-25pt}}
+			\colorbox{coverblue!10}{
+				\begin{minipage}[t]{\dimexpr\textwidth-25pt}
+					\centering
+					
+					\vspace{18pt}
+					
+					{\Large\bfseries\color{covergray}
+						เอกสารประกอบการสอนคณิตศาสตร์}\\[1.0em]
+					
+					{\Huge\bfseries\color{covergray}
+						รายวิชาเพิ่มเติม ม.4 เล่ม 1}\\[1.2em]
+					
+					{\LARGE\bfseries\color{coverblue}
+						หัวข้อ : จำนวนจริง}
+					
+					\vspace{18pt}
+				\end{minipage}
+			}
+		\end{tabular}
+	\end{minipage}
+	
+	\vfill
+	
+	% --------------------------------------------------
+	% ผู้จัดทำ
+	% --------------------------------------------------
+	\begin{minipage}{0.8\textwidth}
+		\centering
+		
+		{\large อาจารย์ผู้สอน}\\[0.5cm]
+		
+		{\huge\bfseries ภาณุวิชญ์ เชื้อพล}\\[0.4cm]
+		
+		\color{coverblue}
+		\rule{0.6\textwidth}{1.2pt}
+		
+		\vspace{0.5cm}
+		
+		{\large กลุ่มสาระการเรียนรู้คณิตศาสตร์}\\[0.15cm]
+		
+		{\large โรงเรียนสาธิตมหาวิทยาลัยขอนแก่น}\\[0.05cm]
+		
+		{\large วิทยาเขตหนองคาย}
+	\end{minipage}
+	
+	\vfill
+	
+	{\large ปีการศึกษา 2569}
+	
+	\vspace*{0.8cm}
+
+\end{titlepage}
+
+
+\newpage
+\thispagestyle{empty} % ไม่แสดงเลขหน้าในหน้าคำนำ
+\newpage
+
+\chapter*{คำนำ}
+
+เอกสารประกอบการสอนคณิตศาสตร์ รายวิชาเพิ่มเติม รหัสวิชา ค31201 ชั้นมัธยมศึกษาปีที่ 4 เรื่อง \textquotedblleft จำนวนจริง\textquotedblright\ ฉบับนี้ จัดทำขึ้นเพื่อใช้เป็นสื่อประกอบการจัดกิจกรรมการเรียนรู้ในชั้นเรียน โดยมีวัตถุประสงค์เพื่อส่งเสริมความรู้ ความเข้าใจ และทักษะกระบวนการทางคณิตศาสตร์ของนักเรียน ตลอดจนสนับสนุนการจัดการเรียนการสอนให้เป็นไปอย่างมีประสิทธิภาพ
+
+เอกสารฉบับนี้จัดทำและออกแบบด้วยโปรแกรม \LaTeX{} โดยยึดเนื้อหาหลักจากหนังสือเรียนรายวิชาเพิ่มเติมคณิตศาสตร์ ชั้นมัธยมศึกษาปีที่ 4 ของสถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.) และปรับรูปแบบการนำเสนอให้เหมาะสมกับบริบทการจัดการเรียนการสอนของผู้จัดทำ ทั้งในด้านการจัดลำดับเนื้อหา การเว้นพื้นที่สำหรับบันทึกสาระสำคัญ การแสดงวิธีทำตัวอย่าง และการทำกิจกรรมการเรียนรู้ในชั้นเรียน
+
+ผู้จัดทำขอขอบพระคุณสถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี (สสวท.) ซึ่งเป็นแหล่งที่มาหลักของเนื้อหา ตัวอย่าง และกิจกรรมการเรียนรู้ที่ใช้ในการเรียบเรียงเอกสารฉบับนี้ และหวังเป็นอย่างยิ่งว่าเอกสารประกอบการสอนฉบับนี้จะเป็นประโยชน์ต่อการเรียนรู้ของนักเรียน ช่วยส่งเสริมความเข้าใจในเรื่องจำนวนจริง และเป็นพื้นฐานสำคัญสำหรับการศึกษาคณิตศาสตร์ในระดับที่สูงขึ้นต่อไป
+
+\vspace{1.5cm}
+
+\begin{flushright}
+	\begin{tabular}{c}
+		ภาณุวิชญ์ เชื้อพล\
+		ผู้จัดทำ
+	\end{tabular}
+\end{flushright}
+
+
+	% ==========================================
+	% 2. ส่วนสารบัญ (Front Matter)
+	% ==========================================
+	\frontmatter
+	\tableofcontents
+	\clearpage
+	
+	% ==========================================
+	% 3. ส่วนเนื้อหาหลัก (Main Matter)
+	% ==========================================
+	\mainmatter
+	\include{chapter1}	
+% ==========================================
+% 4. ส่วนบรรณานุกรม
+% ==========================================
+
+\clearpage
+
+\addcontentsline{toc}{chapter}{บรรณานุกรม}
+
+\begingroup
+
+% หลอกให้ไม่มีเลขบท
+\setcounter{chapter}{0}
+
+% เปลี่ยนชื่อ bibliography
+\renewcommand{\bibname}{บรรณานุกรม}
+
+\begin{thebibliography}{99}
+	
+	\bibitem{1}
+สถาบันส่งเสริมการสอนวิทยาศาสตร์และเทคโนโลยี. (2568).
+\textit{หนังสือเรียนรายวิชาเพิ่มเติมคณิตศาสตร์ ชั้นมัธยมศึกษาปีที่ 4 เล่ม 1} (พิมพ์ครั้งที่ 2).
+กรุงเทพฯ: โรงพิมพ์ สกสค. ลาดพร้าว.
+	
+\end{thebibliography}
+
+\endgroup			
+\end{document}
