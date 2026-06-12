@@ -1,0 +1,389 @@
+\chapter{สมภาค}
+\section{นิยามและสมบัติของสมภาค}
+\begin{definitionbox}\label{definition2.1}
+	ให้ $n$ เป็นจำนวนนับ และ $a,b$ เป็นจำนวนเต็ม เราจะกล่าวว่า 
+	\begin{itemize}
+		\item $a$ \textbf{สมภาคกับ} $b$ มอดุโล $n$ สามารถเขียนแทนด้วย 
+		\[\text{$a \equiv b(\bmod n)$ ก็ต่อเมื่อ $n\mid (a-b)$}\]
+		\item ถ้า $n\nmid (a-b)$ ไม่ลงตัว เราจะกล่าวว่า $a$ \textbf{ไม่สมภาคกับ} $b$ มอดุโล $n$ สามารถเขียนแทนด้วย 
+		\[a \not \equiv b(\bmod n)\]
+	\end{itemize}
+	ในที่นี้เรียกจำนวนเต็มบวก $n$ ว่า \textbf{มอดุลัส} (modulus)    
+\end{definitionbox}
+
+\begin{remarkbox}
+	จาก \textbf{บทนิยาม~\ref{definition2.1}} เราพบว่า สำหรับจำนวนเต็ม $a, b$ และจำนวนเต็มบวก $n$ จะได้ว่า
+	\begin{enumerate}
+		\item $a \equiv b(\bmod n)$ ก็ต่อเมื่อ $n \mid (a-b)$
+		\item  $a \not \equiv b(\bmod n)$ ก็ต่อเมื่อ $n \nmid(a-b)$
+		\item  $a \equiv b(\bmod 1)$ และ $a \equiv a(\bmod n)$
+	\end{enumerate}   
+\end{remarkbox}
+
+\begin{examplebox}
+	\begin{enumerate}
+		\item  $10 \equiv 2(\bmod 4)$ เพราะว่า $4 \mid(10-2)$
+		\item $7 \not \equiv 3(\bmod 3)$ เพราะว่า $3 \nmid(7-3)$
+		\item $-31 \equiv 11(\bmod 7)$ เพระว่า $7 \mid(-31-11)$
+		\item $2 \equiv 16(\bmod 7)$ เพราะ $7 \mid(2-16)=-14$
+		\item $11 \equiv-5(\bmod 4)$ เพราะ $4 \mid(11-(-5))=16$
+	\end{enumerate}    
+\end{examplebox}
+
+\begin{examplebox}
+	จงตรวจสอบว่า $-10 \equiv 2(\bmod 4)$ หรือไม่
+\end{examplebox}
+\solution
+
+\begin{examplebox}
+	จงตรวจสอบว่า $25 \equiv 4(\bmod 3)$ หรือไม่
+\end{examplebox}
+\solution
+
+\begin{examplebox}
+	จงตรวจสอบว่า $-67 \equiv -3(\bmod 16)$ หรือไม่
+\end{examplebox}
+\solution
+
+\begin{examplebox}
+	จงตรวจสอบว่า $97 \not \equiv -2(\bmod 10)$ หรือไม่
+\end{examplebox}
+\solution
+
+
+\begin{examplebox}
+	จงตรวจสอบว่า  $100 \not \equiv 55(\bmod 8)$ หรือไม่
+\end{examplebox}
+\solution
+
+\begin{examplebox}
+จงตรวจสอบว่า  $-37 \not \equiv -1(\bmod 7)$ หรือไม่
+\end{examplebox}
+\solution
+
+\newpage
+\begin{theorembox}
+	ให้ $n$ เป็นจำนวนนับ และ $a, b, c, d$ เป็นจำนวนเต็ม จะได้ว่า
+	\begin{enumerate}
+		\item $a \equiv b(\bmod n)$ ก็ต่อเมื่อ $a$ และ $b$ มีเศษเหลือจากการหารด้วย $n$ เท่ากัน 
+		\item ถ้า $a \equiv b(\bmod n)$ แล้ว $b \equiv a(\bmod n)$
+		\item ถ้า $a \equiv b(\bmod n)$ และ $b \equiv c(\bmod n)$ แล้ว $a \equiv c(\bmod n)$
+		\item ถ้า $a \equiv b(\bmod n)$ และ $c \equiv d(\bmod n)$ แล้ว $a+c \equiv b+d(\bmod n)$ 
+		\item ถ้า $a \equiv b(\bmod n)$ และ $c \equiv d(\bmod n)$ แล้ว $a\cdot c \equiv b\cdot d(\bmod n)$
+		\item ถ้า $a \equiv b(\bmod n)$ แล้ว $a+c \equiv b+c(\bmod n)$ 
+		\item ถ้า $a \equiv b(\bmod n)$ แล้ว $a\cdot c \equiv b\cdot c(\bmod n)$
+		\item ถ้า $a \equiv b(\bmod n)$ แล้ว $a^k \equiv b^k(\bmod n)$ สำหรับจำนวนนับ $k$
+	\end{enumerate}
+\end{theorembox}
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $3^{100}$ ด้วย $8$   
+\end{examplebox}
+\solution
+\vspace{5cm} 
+
+\newpage
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $26^{1000}$ ด้วย $5$ 
+\end{examplebox}
+\solution 
+
+\newpage
+\begin{examplebox}
+	ถ้าหากทราบว่า $2^{30} \equiv 13(\bmod 17)$ จงหาเศษที่เกิดจากการหาร $2^{30}$ ด้วย $17$     
+\end{examplebox}
+\solution
+\newpage
+
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $7^{100}\cdot 28^{1000}$ ด้วย $3$   
+\end{examplebox}
+\solution
+\newpage
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $24^{777}\cdot 49^{777}$ ด้วย $25$ 
+\end{examplebox}
+\solution 
+\newpage
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $37^{9999}$ ด้วย $19$     
+\end{examplebox}
+\solution
+\newpage
+
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $27^{10000}+38^{10001}$ ด้วย $13$ 
+\end{examplebox}
+\solution 
+\newpage
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $17^{55}$ ด้วย $12$     
+\end{examplebox}
+\solution
+\newpage
+
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $29^{3000}\cdot 51$ ด้วย $15$  
+\end{examplebox}
+\solution  
+\newpage
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $7^{10}$ ด้วย $51$     
+\end{examplebox}
+\solution
+\newpage
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $2^{20}-1$ ด้วย $41$
+\end{examplebox}
+\solution 
+\newpage
+
+\begin{examplebox}
+	จงหาเลขหนักหน่วยของ $2^{100}$   
+\end{examplebox}
+\solution
+\newpage
+
+\begin{examplebox}
+	จงหาเลขหนักหน่วยของ $8^{50}$ 
+\end{examplebox}
+\solution  
+\newpage
+
+
+\begin{examplebox}
+	จงหาเลขหลักสุดท้ายของ $7^{77}$\\
+	(\textbf{ข้อแนะนำ:} $7^{4}=2401 \equiv 1(\bmod 100)$)\\    
+\end{examplebox}
+\solution
+\newpage
+
+
+\begin{examplebox}
+	จงหาเลขสองหลักสุดท้ายของ $7^{99}$\\
+	(\textbf{ข้อแนะนำ:} $7^{4}=2401 \equiv 1(\bmod 100)$)\\ 
+\end{examplebox}
+\solution   
+\newpage
+
+\begin{examplebox}
+	จงหาเลขสองหลักสุดท้ายของ $7^{300}$\\
+	(\textbf{ข้อแนะนำ:} $7^{4}=2401 \equiv 1(\bmod 100)$)   
+\end{examplebox}
+\solution
+\newpage
+
+
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $5\cdot 3^{100}$ ด้วย $13$ 
+\end{examplebox}
+\solution  
+\newpage
+
+\begin{examplebox}
+	ถ้าเราเขียน $7^{2538}=100q+r$ เมื่อ $q$ และ $r$ เป็นจำนวนเต็มบวกและ $r<100$ แล้วค่าของ $r$ คือเท่าใด   
+\end{examplebox}
+\solution
+\newpage
+
+
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $1^5+2^5+\cdots+9^5+10^5$ ด้วย $4$  
+\end{examplebox}
+\solution   
+\newpage
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $1^{5555}+2^{5555}+3^{5555}+\cdots+11^{5555}+12^{5555}$ ด้วย $4$
+\end{examplebox}
+\solution  
+\newpage
+
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $2222^{3333}+5555^{3333}$ ด้วย $7$
+\end{examplebox}
+\solution  
+\newpage
+
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $10^{10^0}+10^{10^1}+10^{10^2}+\cdots+10^{10^{10}}$ ด้วย $7$ 
+\end{examplebox}
+\solution  
+\newpage
+
+\section{จำนวนเฉพาะ (prime number)}
+\begin{definitionbox}
+	\begin{itemize}
+		\item จำนวนเต็ม $p>1$ จะถูกเรียกว่า \textbf{จำนวนเฉพาะ} (prime number) ถ้าจำนวนเต็มบวกที่มาหารได้ลงตัว มีเพียง $1$ และ $p$ เท่านั้น 
+		\item จำนวนเต็มที่มากกว่า $1$ และไม่ใช่จำนวนเฉพาะ จะเรียกว่า \textbf{จำนวนประกอบ} (composite number) 
+	\end{itemize}
+\end{definitionbox}
+
+\begin{definitionbox}
+	จำนวนเต็ม $a$ และ $b$ เป็น \textbf{จำนวนเฉพาะสัมพัทธ์} ก็ต่อเมื่อ $(a,b)=1$
+\end{definitionbox}
+
+\section{ฟังก์ชันออยเลอร์-ฟี (Euler-Phi function) }
+\begin{definitionbox}
+	ให้ $m$ เป็นจำนวนนับ
+	\[
+	\phi(m)=\text{จำนวนของจำนวนเต็มบวกที่น้อยกว่าหรือเท่ากับ $m$ และเป็นจำนวนเฉพาะสัมพัทธ์กับ $m$}
+	\] 
+\end{definitionbox}
+
+\begin{examplebox}
+	\begin{enumerate}
+		\item $\phi(12)=4$ เพราะมีจำนวนเต็มบวก $4$ จำนวนที่มีค่าน้อยกว่าหรือเท่ากับ $12$ และเป็นจำนวนเฉพาะสัมพัทธ์กับ $12$ คือ $1,5,7$ และ $13$
+		\item  $\phi(14)=6$ เพราะมีจำนวนเต็มบวก $6$ จำนวนที่มีค่าน้อยกว่าหรือเท่ากับ $14$ และเป็นจำนวนเฉพาะสัมพัทธ์กับ $14$ คือ $1,3,5,9,11$ และ $13$ 
+	\end{enumerate}   
+\end{examplebox}
+
+\begin{theorembox}
+	ถ้า $p$ เป็นจำนวนเฉพาะ แล้วจะได้ว่า $\phi(p)=p-1$
+\end{theorembox}
+
+\begin{examplebox}
+	จงหา $\phi(5)$ และ $\phi(7)$ \\   
+\end{examplebox} 
+\solution
+\vspace{1cm}  
+
+
+\begin{theorembox}
+	ถ้า $p$ เป็นจำนวนเฉพาะ และ $k$ เป็นจำนวนนับ แล้วจะได้ว่า $\phi(p^k)=p^k-p^{k-1}$
+\end{theorembox}
+
+\begin{examplebox}
+	จงหา $\phi(81)$ และ $\phi(625)$\\  
+\end{examplebox} 
+\solution
+
+\newpage
+\begin{theorembox}
+	ถ้า $m,n$ เป็นจำนวนนับ โดยที่ $(m,n)=1$ แล้ว $\phi(mn)=\phi(m)\phi(n)$
+\end{theorembox}
+
+\begin{theorembox}
+	สําหรับจํานวนเต็มบวก $n$ เขียนในรูปผลคูณของจํานวนเฉพาะ $n=p^{k_1}_1\cdot p^{k_2}_2 \cdots p^{k_r}_r$ แล้วจะได้ว่า
+	\[\phi(n)=n\left(1-\dfrac{1}{p_1}\right)\left(1-\dfrac{1}{p_2}\right)\cdots\left(1-\dfrac{1}{p_r}\right)\]
+\end{theorembox}
+
+\begin{examplebox}
+	จงหา $\phi(24)$   
+\end{examplebox} 
+\solution
+\vspace{2cm}  
+
+
+\begin{examplebox}
+	จงหา $\phi(1000)$  
+\end{examplebox} 
+\solution
+
+
+\newpage
+\begin{examplebox}
+	มีจำนวนนับทั้งสิ้นกี่จำนวนตั้งแต่ $1$ ถึง $2541$ ที่เป็นจำนวนเฉพาะสัมพัทธ์กับ $2541$
+\end{examplebox} 
+\solution   
+
+\newpage
+\begin{theorembox}[ทฤษฎีบทของออยเลอร์ (Euler’s Theorem)]
+	ถ้า $a$ เป็นจำนวนเต็ม และ $n$ เป็นจำนวนนับ โดยที่ $(a,n)=1$ แล้วเราจะได้ว่า
+	\[a^{\phi(n)}\equiv 1(\bmod n)\]
+\end{theorembox}
+
+\begin{theorembox}[ทฤษฎีบทของแฟร์มาต์ (Fermats Little Theorem)]
+	ถ้า $p$ เป็นจำนวนเฉพาะ และ $a$ เป็นจำนวนเต็ม โดยที่ $p \nmid a$ แล้วเราจะได้ว่า
+	\[a^{p-1}\equiv 1(\bmod p)\]
+\end{theorembox}
+
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $3^{1000}$ ด้วย $17$ 
+\end{examplebox}
+\solution
+\newpage
+
+
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $3^{1000}\cdot 51$ ด้วย $17$
+\end{examplebox}
+\solution
+\newpage
+
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $2^{117}-2$ ด้วย $117$
+\end{examplebox}
+\solution
+\newpage
+
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $3^{256}$ ด้วย $100$
+\end{examplebox}
+\solution
+\newpage
+
+\begin{examplebox}
+	ถ้า $102^{1999}+103^{1999}\equiv m(\bmod 1999)$ และ $0\leq m <1999$ แล้วจงหาค่า $m$
+\end{examplebox}
+\solution
+\newpage
+
+\begin{definitionbox}[แฟกทอเรียล]
+	สำหรับจำนวนเต็มบวก \(n\)
+	\[
+	n! = n \cdot (n-1) \cdot (n-2) \cdots 3 \cdot 2 \cdot 1
+	\]
+	โดยกำหนดว่า
+	\[
+	0! = 1
+	\]    
+\end{definitionbox}
+
+\begin{examplebox}
+	\begin{enumerate}
+		\item $1! = 1$
+		\item $2! =  2\cdot 1$
+		\item $3! = 3\cdot 2\cdot 1$
+		\item $4! = 4\cdot 3\cdot 2\cdot 1$
+		\item $5! = 5\cdot 4\cdot 3\cdot 2\cdot 1$
+	\end{enumerate}    
+\end{examplebox}
+
+\begin{theorembox}[ทฤษฎีบทของวิลสัน (Wilsons Theorem)]
+	ให้ $p$ เป็นจำนวนเฉพาะ แล้วเราจะได้ว่า
+	\[(p-1)!\equiv -1(\bmod p)\]
+\end{theorembox}
+
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $12!$ ด้วย $13$
+\end{examplebox}
+\solution
+
+
+\newpage
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $22!$ ด้วย $23$
+\end{examplebox}
+\solution
+\newpage
+
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $(45)^{998}\cdot (22!)^{999}$ ด้วย $23$
+\end{examplebox}
+\solution
+
+\newpage
+\begin{examplebox}
+	จงหาเศษเหลือจากการหาร $33^{144}+(12!)^{33}$ ด้วย $13$
+\end{examplebox}
+\solution
