@@ -62,17 +62,34 @@
 \solution
 
 \newpage
+\subsection{สมบัติของสมภาค}
+ทฤษฎีบทต่อไปนี้จะกล่าวเกี่ยวกับข้อคล้ายคลึงกันระหว่างการเท่ากันและการสมภาคกันของจำนวนเต็ม
+
 \begin{theorembox}
-	ให้ $n$ เป็นจำนวนนับ และ $a, b, c, d$ เป็นจำนวนเต็ม จะได้ว่า
+$a \equiv b(\bmod n)$ ก็ต่อเมื่อ $a$ และ $b$ มีเศษเหลือจากการหารด้วย $n$ เท่ากัน 
+\end{theorembox}
+
+\begin{theorembox}
+	ให้ $n \in \mathbb{N}$ และ $a, b, c, d, x, y \in \mathbb{Z}$ จะได้ว่า
 	\begin{enumerate}
-		\item $a \equiv b(\bmod n)$ ก็ต่อเมื่อ $a$ และ $b$ มีเศษเหลือจากการหารด้วย $n$ เท่ากัน 
-		\item ถ้า $a \equiv b(\bmod n)$ แล้ว $b \equiv a(\bmod n)$
-		\item ถ้า $a \equiv b(\bmod n)$ และ $b \equiv c(\bmod n)$ แล้ว $a \equiv c(\bmod n)$
-		\item ถ้า $a \equiv b(\bmod n)$ และ $c \equiv d(\bmod n)$ แล้ว $a+c \equiv b+d(\bmod n)$ 
-		\item ถ้า $a \equiv b(\bmod n)$ และ $c \equiv d(\bmod n)$ แล้ว $a\cdot c \equiv b\cdot d(\bmod n)$
-		\item ถ้า $a \equiv b(\bmod n)$ แล้ว $a+c \equiv b+c(\bmod n)$ 
-		\item ถ้า $a \equiv b(\bmod n)$ แล้ว $a\cdot c \equiv b\cdot c(\bmod n)$
-		\item ถ้า $a \equiv b(\bmod n)$ แล้ว $a^k \equiv b^k(\bmod n)$ สำหรับจำนวนนับ $k$
+		\item ถ้า $a \equiv b \pmod{n}$ แล้ว $b \equiv a \pmod{n}$
+		\item ถ้า $a \equiv b \pmod{n}$ และ $b \equiv c \pmod{n}$ แล้ว $a \equiv c \pmod{n}$
+		\item ถ้า $a \equiv b \pmod{n}$ และ $c \equiv d \pmod{n}$ แล้ว 
+		\[ a+c \equiv b+d \pmod{n} \quad \text{และ} \quad ac \equiv bd \pmod{n} \]
+		\item ถ้า $a \equiv b \pmod{n}$ แล้ว $a+c \equiv b+c \pmod{n}$ และ $ac \equiv bc \pmod{n}$
+		\item ถ้า $a \equiv b \pmod{n}$ แล้ว $a^k \equiv b^k \pmod{n}$ สำหรับทุกจำนวนเต็มบวก $k$
+		\item ถ้า $a \equiv b \pmod{n}$ และ $c \equiv d \pmod{n}$ แล้ว $ax+cy \equiv bx+dy \pmod{n}$
+		\item ถ้า $a \equiv b \pmod{n}$ และ $d \mid n$ โดยที่ $d > 0$ แล้ว $a \equiv b \pmod{d}$
+	\end{enumerate}
+\end{theorembox}
+
+\begin{theorembox}
+	ให้ $n \in \mathbb{N}$ และ $a, b, x, y \in \mathbb{Z}$ จะได้ว่า
+	\begin{enumerate}
+		\item ถ้า $a \equiv b \pmod{n}$ แล้ว $(a, n) = (b, n)$
+		\item $ax \equiv ay \pmod{n}$ ก็ต่อเมื่อ $x \equiv y \pmod{\left( \dfrac{n}{(a, n)} \right)}$
+		\item ถ้า $ax \equiv ay \pmod{n}$ และ $(a, n) = 1$ แล้ว $x \equiv y \pmod{n}$
+		\item ถ้า $ax \equiv ay \pmod{n}$ และ $n$ เป็นจำนวนเฉพาะซึ่ง $n \nmid a$ แล้ว $x \equiv y \pmod{n}$
 	\end{enumerate}
 \end{theorembox}
 
@@ -221,23 +238,160 @@
 \newpage
 
 \section{จำนวนเฉพาะ (prime number)}
+\subsection{นิยามของจำนวนเฉพาะและข้อเท็จจริงบางประการเกี่ยวกับจำนวนเฉพาะ}
 \begin{definitionbox}
-	\begin{itemize}
-		\item จำนวนเต็ม $p>1$ จะถูกเรียกว่า \textbf{จำนวนเฉพาะ} (prime number) ถ้าจำนวนเต็มบวกที่มาหารได้ลงตัว มีเพียง $1$ และ $p$ เท่านั้น 
-		\item จำนวนเต็มที่มากกว่า $1$ และไม่ใช่จำนวนเฉพาะ จะเรียกว่า \textbf{จำนวนประกอบ} (composite number) 
-	\end{itemize}
+	จำนวนเต็ม $p > 1$ เรียกว่า \textbf{จำนวนเฉพาะ} (prime number) ถ้าจำนวนเต็มบวกที่มาหารได้ลงตัวมีเพียง $1$ และ $p$ เท่านั้น จำนวนเต็มที่มากกว่า $1$ และไม่ใช่จำนวนเฉพาะ จะเรียกว่า \textbf{จำนวนประกอบ} (composite number) \\
+	หรือเราจะเรียกจำนวนเต็ม $p$ ว่า จำนวนเฉพาะ ก็ต่อเมื่อ $p \neq \pm 1$ และถ้า $a, b \in \mathbb{Z}$ และ $p = ab$ แล้ว $a = \pm 1$ หรือ $b = \pm 1$
 \end{definitionbox}
 
-\begin{definitionbox}
-	จำนวนเต็ม $a$ และ $b$ เป็น \textbf{จำนวนเฉพาะสัมพัทธ์} ก็ต่อเมื่อ $(a,b)=1$
+จากบทนิยามของจำนวนเฉพาะ จะพบว่า
+\begin{enumerate}
+	\item $2$ และ $-2$ เป็นจำนวนเฉพาะที่เป็นจำนวนเต็มคู่ จำนวนเฉพาะอื่น ๆ จะเป็นจำนวนเต็มคี่ทั้งหมด
+	\item ถ้า $p$ เป็นจำนวนเฉพาะ แล้ว $-p$ เป็นจำนวนเฉพาะ
+	\item ให้ $p$ เป็นจำนวนเฉพาะ และ $a \in \mathbb{Z}$ ถ้า $a \mid p$ แล้ว $a = \pm 1$ หรือ $a = \pm p$
+	\item ให้ $p$ เป็นจำนวนเฉพาะ และ $a \in \mathbb{Z}$ จะได้ $p \nmid a$ ก็ต่อเมื่อ $(p, a) = 1$
+	\item ให้ $p$ เป็นจำนวนเฉพาะ และ $a \in \mathbb{Z}$ จะได้ว่า $p \mid a$ ก็ต่อเมื่อ $(p, a) = |p|$
+	\item ถ้า $p$ และ $q$ เป็นจำนวนเฉพาะ และ $p \mid q$ แล้ว $p = q$
+\end{enumerate}
+
+\begin{agreementbox}
+	เราอาจกล่าวถึงจำนวนเฉพาะที่เป็นบวกเท่านั้น นั่นคือ ต่อไปนี้เมื่อกล่าวถึงจำนวนเฉพาะ $p$ จะหมายถึงจำนวนเฉพาะ $p \in \mathbb{N}$ เท่านั้น และจำนวนเต็มที่มากกว่า $1$ ที่ไม่ใช่จำนวนเฉพาะเรียกว่า \textbf{จำนวนประกอบ} (composite number) กล่าวคือ $n$ เป็นจำนวนประกอบ ก็ต่อเมื่อ มี $a, b \in \mathbb{N}$ ซึ่ง $1 < a \leq b < n$ ที่ทำให้ $n = ab$
+\end{agreementbox}
+
+\begin{examplebox}
+	$2, 3, 5$ เป็นจำนวนเฉพาะ แต่ $4, 6, 8$ เป็นจำนวนประกอบ
+\end{examplebox}
+
+\begin{examplebox}
+	จำนวนเฉพาะ $20$ ตัวแรก ได้แก่
+	\[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71 \]
+\end{examplebox}
+
+\begin{theorembox}
+	ทุกจำนวนเต็ม $n > 1$ จะมีจำนวนเฉพาะ $p$ ซึ่ง $p \mid n$
+\end{theorembox}
+
+\begin{theorembox}
+	ให้ $a, b \in \mathbb{Z}$ และ $p$ เป็นจำนวนเฉพาะ จะได้ว่า ถ้า $p \mid ab$ แล้ว $p \mid a$ หรือ $p \mid b$
+\end{theorembox}
+
+\begin{theorembox}
+	ให้ $a_1, a_2, \ldots, a_n \in \mathbb{Z}$ และ $p$ เป็นจำนวนเฉพาะ จะได้ว่า ถ้า $p \mid a_1 a_2 \cdots a_n$ แล้วจะมี $a_i$ บางตัวสำหรับ $1 \leq i \leq n$ ซึ่ง $p \mid a_i$
+\end{theorembox}
+
+\begin{lemmabox}
+	ให้ $p$ และ $q$ เป็นจำนวนเฉพาะบวกทั้งคู่ ถ้า $p \mid q$ แล้ว $p = q$
+\end{lemmabox}
+
+\begin{theorembox}
+	ถ้า $q, p_1, p_2, \ldots, p_n$ เป็นจำนวนเฉพาะ และ $q \mid (p_1 p_2 \cdots p_n)$ แล้วจะมี $i$ บางตัวที่ทำให้ $q = p_i$
+\end{theorembox}
+
+\newpage
+\begin{definitionbox} \label{definition3.3}
+	จำนวนเต็ม $a_1, a_2, a_3, \ldots, a_n$ จะเรียกว่าเป็น \textbf{จำนวนเฉพาะสัมพัทธ์} (relatively prime numbers) ก็ต่อเมื่อ $(a_1, a_2, a_3, \ldots, a_n) = 1$ 
+	
+	และถ้าทุก $i, j$ ที่ $i \neq j$ มี $(a_i, a_j) = 1$ แล้วจะกล่าวว่า $a_1, a_2, a_3, \ldots, a_n$ เป็น \textbf{จำนวนเฉพาะสัมพัทธ์ทุกคู่} (pairwise relatively prime numbers)
 \end{definitionbox}
 
+\begin{examplebox}
+	\begin{enumerate}
+		\item $(53, 122, 471) = 1$
+		\item $(111, 1111, 11111) = 1$
+		\item $(101, 10101, 1010101) = 1$
+	\end{enumerate}
+\end{examplebox}
+
+\begin{examplebox}
+	\begin{enumerate}
+		\item $4$ กับ $9$ เป็นจำนวนเฉพาะสัมพัทธ์
+		\item $4, 6, 9$ เป็นจำนวนเฉพาะสัมพัทธ์ แต่ไม่เป็นจำนวนเฉพาะสัมพัทธ์ทุกคู่
+		\item $7, 9, 10$ เป็นจำนวนเฉพาะสัมพัทธ์ทุกคู่ และเป็นจำนวนเฉพาะสัมพัทธ์
+	\end{enumerate}
+\end{examplebox}
+
+\remark 
+\begin{itemize}
+	\item จากบทนิยาม \ref{definition3.3} จะได้ว่า ถ้า $a_1, a_2, a_3, \ldots, a_n$ เป็นจำนวนเฉพาะสัมพัทธ์ เช่น $(24, 60, 49) = 1$ แสดงว่า $24, 60$ และ $49$ เป็นจำนวนเฉพาะสัมพัทธ์ แต่จะเห็นว่า $(24, 60) = 12 \neq 1$ ดังนั้น $24, 60, 49$ จึงไม่เป็นจำนวนเฉพาะสัมพัทธ์ทุกคู่ 
+	\item แต่ในทางกลับกัน ถ้า $a_1, a_2, a_3, \ldots, a_n$ เป็นจำนวนเฉพาะสัมพัทธ์ทุกคู่ แล้ว $a_1, a_2, a_3, \ldots, a_n$ จะเป็นจำนวนเฉพาะสัมพัทธ์เสมอ ซึ่งพิสูจน์ได้ตามทฤษฎีบทต่อไปนี้
+\end{itemize}
+
+\begin{theorembox}
+	สำหรับจำนวนเต็ม $a_1, a_2, a_3, \ldots, a_n$ ใด ๆ ถ้า $a_1, a_2, a_3, \ldots, a_n$ เป็นจำนวนเฉพาะสัมพัทธ์ทุกคู่ แล้ว $a_1, a_2, a_3, \ldots, a_n$ เป็นจำนวนเฉพาะสัมพัทธ์
+\end{theorembox}
+\newpage
+
+\section{ทฤษฎีบทหลักมูลของเลขคณิต (The Fundamental Theorem of Arithmetic)}
+\begin{theorembox}
+	ให้ $n \in \mathbb{Z}$ และ $n > 1$ จะได้ว่า $n$ สามารถเขียนได้ในรูป 
+	\[ n = p_1^{a_1} p_2^{a_2} p_3^{a_3} \cdots p_k^{a_k} \]
+	โดยที่ $p_1, p_2, p_3, \ldots, p_k$ เป็นจำนวนเฉพาะ ซึ่ง $p_1 < p_2 < p_3 < \cdots < p_k$ และ $a_i \in \mathbb{N}$ สำหรับทุก $i = 1, 2, 3, \ldots, k$ และจะเขียน $n$ ในรูปดังกล่าวได้เพียงรูปแบบเดียวเท่านั้น
+\end{theorembox}
+
+\begin{agreementbox}
+	เราจะเรียกการเขียน $n > 1$ ในรูป $n = p_1^{a_1} p_2^{a_2} p_3^{a_3} \cdots p_k^{a_k}$ โดยที่ $p_1 < p_2 < p_3 < \cdots < p_k$ เป็นจำนวนเฉพาะ และ $a_i \in \mathbb{N}$ สำหรับทุก $i = 1, 2, 3, \ldots, k$ ว่าเป็น \textbf{การเขียนในรูปแบบบัญญัติ} (canonical form) ของ $n$
+\end{agreementbox}
+
+\begin{examplebox}
+	จงเขียน $48, 15750$ และ $846846$ ในรูปแบบบัญญัติ 
+\end{examplebox}
+	\solution การแยกตัวประกอบให้อยู่ในรูปแบบบัญญัติ ทำได้ดังนี้
+\begin{align*}
+	48 &= 2 \cdot 2 \cdot 2 \cdot 2 \cdot 3 = 2^4 \cdot 3 \\
+	15750 &= 2 \cdot 3 \cdot 3 \cdot 5 \cdot 5 \cdot 5 \cdot 7 = 2 \cdot 3^2 \cdot 5^3 \cdot 7 \\
+	846846 &= 2 \cdot 3^2 \cdot 7 \cdot 11 \cdot 13 \cdot 47
+\end{align*}
+
+\newpage
+\begin{theorembox}
+	ให้ $a$ และ $b$ เป็นจำนวนเต็ม ซึ่ง $a > 1$ และ $b > 1$ เขียนในรูปมาตรฐานได้เป็น $a = p_1^{a_1} p_2^{a_2} \cdots p_n^{a_n}$ และ $b = p_1^{b_1} p_2^{b_2} \cdots p_n^{b_n}$ เมื่อ $p_1, p_2, \ldots, p_n$ เป็นจำนวนเฉพาะที่แตกต่างกัน และ $a_1, a_2, \ldots, a_n, b_1, b_2, \ldots, b_n$ เป็นจำนวนเต็มที่ไม่เป็นลบ จะได้ว่า
+	\begin{align*}
+		(a, b) &= p_1^{\min\{a_1, b_1\}} p_2^{\min\{a_2, b_2\}} \cdots p_n^{\min\{a_n, b_n\}} \\
+		[a, b] &= p_1^{\max\{a_1, b_1\}} p_2^{\max\{a_2, b_2\}} \cdots p_n^{\max\{a_n, b_n\}}
+	\end{align*}
+\end{theorembox}
+
+\begin{examplebox}
+	ให้ $a = 264 = 2^3 \cdot 3 \cdot 11$ และ $b = 157950 = 2 \cdot 3^5 \cdot 5^2 \cdot 13$ จงหา $(a, b)$ และ $[a, b]$ 
+\end{examplebox}
+	\solution จัดรูปจำนวนทั้งสองให้อยู่ในฐานจำนวนเฉพาะชุดเดียวกันได้ดังนี้
+\begin{align*}
+	a &= 2^3 \cdot 3^1 \cdot 5^0 \cdot 11^1 \cdot 13^0 \\
+	b &= 2^1 \cdot 3^5 \cdot 5^2 \cdot 11^0 \cdot 13^1 
+\end{align*}
+โดยทฤษฎีบทข้างต้น จะได้ว่า
+\begin{align*}
+	(a, b) &= 2^{\min\{3,1\}} \cdot 3^{\min\{1,5\}} \cdot 5^{\min\{0,2\}} \cdot 11^{\min\{1,0\}} \cdot 13^{\min\{0,1\}} \\
+	&= 2^1 \cdot 3^1 \cdot 5^0 \cdot 11^0 \cdot 13^0 = 2 \cdot 3 = 6 \\[0.5em]
+	[a, b] &= 2^{\max\{3,1\}} \cdot 3^{\max\{1,5\}} \cdot 5^{\max\{0,2\}} \cdot 11^{\max\{1,0\}} \cdot 13^{\max\{0,1\}} \\
+	&= 2^3 \cdot 3^5 \cdot 5^2 \cdot 11^1 \cdot 13^1 = 8 \cdot 243 \cdot 25 \cdot 11 \cdot 13 = 6,949,800
+\end{align*}
+
+\begin{examplebox}
+	ให้ $a = 2^3 \cdot 3 \cdot 7^2$ และ $b = 3^3 \cdot 5^2 \cdot 11$ จงหา $(a, b)$ และ $[a, b]$ 
+\end{examplebox}
+	\solution จัดรูปจำนวนทั้งสองให้อยู่ในฐานจำนวนเฉพาะชุดเดียวกันได้ดังนี้
+\begin{align*}
+	a &= 2^3 \cdot 3^1 \cdot 5^0 \cdot 7^2 \cdot 11^0 \\
+	b &= 2^0 \cdot 3^3 \cdot 5^2 \cdot 7^0 \cdot 11^1
+\end{align*}
+โดยทฤษฎีบทข้างต้น จะได้ว่า
+\begin{align*}
+	(a, b) &= 2^{\min\{3,0\}} \cdot 3^{\min\{1,3\}} \cdot 5^{\min\{0,2\}} \cdot 7^{\min\{2,0\}} \cdot 11^{\min\{0,1\}} \\
+	&= 2^0 \cdot 3^1 \cdot 5^0 \cdot 7^0 \cdot 11^0 = 3 \\[0.5em]
+	[a, b] &= 2^{\max\{3,0\}} \cdot 3^{\max\{1,3\}} \cdot 5^{\max\{0,2\}} \cdot 7^{\max\{2,0\}} \cdot 11^{\max\{0,1\}} \\
+	&= 2^3 \cdot 3^3 \cdot 5^2 \cdot 7^2 \cdot 11^1 = 8 \cdot 27 \cdot 25 \cdot 49 \cdot 11 = 2,910,600
+\end{align*}
+
+\newpage
 \section{ฟังก์ชันออยเลอร์-ฟี (Euler-Phi function) }
-\begin{definitionbox}
+
+\begin{definitionbox} \label{definition3.4}
 	ให้ $m$ เป็นจำนวนนับ
 	\[
 	\phi(m)=\text{จำนวนของจำนวนเต็มบวกที่น้อยกว่าหรือเท่ากับ $m$ และเป็นจำนวนเฉพาะสัมพัทธ์กับ $m$}
 	\] 
+จะเห็นว่า $\phi(m)$ สามารถหาค่าได้ทุกค่าของจำนวนเต็มบวก $m$ และเรียกว่า \text{ฟังก์ชันออยเลอร์-ฟี} (Euler-Phi function)
 \end{definitionbox}
 
 \begin{examplebox}
@@ -247,6 +401,11 @@
 	\end{enumerate}   
 \end{examplebox}
 
+\newpage
+\remark ในการหาค่าของฟังก์ชันออยเลอร์-ฟีโดยใช้บทนิยาม \ref{definition3.4} ตรง ๆ นั้น เราจำเป็นต้องหาจำนวนเต็มบวกที่ไม่เกิน $m$ และตรวจเช็กว่าเป็นจำนวนเฉพาะสัมพัทธ์กับ $m$ ก่อน จากนั้นจึงนับจำนวนของจำนวนเต็มบวกเหล่านี้ ซึ่งจะเห็นว่าถ้าค่าของ $m$ มีค่ามาก การหาค่า $\phi(m)$ โดยวิธีนับโดยตรงจะไม่สะดวกและขาดความคล่องตัว 
+
+ในหัวข้อนี้จึงเป็นการศึกษา \textbf{สูตรที่ใช้คำนวณหาค่าของ $\phi(m)$} เมื่อ $m$ เป็นจำนวนเต็มบวกใด ๆ พร้อมทั้งศึกษาสมบัติที่สำคัญของฟังก์ชันนี้ โดยกรณีที่ง่ายที่สุดคือเมื่อ $m$ เป็นจำนวนเฉพาะ ดังจะกล่าวในทฤษฎีบทต่อไปนี้ 
+
 \begin{theorembox}
 	ถ้า $p$ เป็นจำนวนเฉพาะ แล้วจะได้ว่า $\phi(p)=p-1$
 \end{theorembox}
@@ -255,7 +414,7 @@
 	จงหา $\phi(5)$ และ $\phi(7)$ \\   
 \end{examplebox} 
 \solution
-\vspace{1cm}  
+\vspace{3cm}  
 
 
 \begin{theorembox}
@@ -289,14 +448,142 @@
 \end{examplebox} 
 \solution
 
-
-\newpage
+\vspace{2cm}  
 \begin{examplebox}
 	มีจำนวนนับทั้งสิ้นกี่จำนวนตั้งแต่ $1$ ถึง $2541$ ที่เป็นจำนวนเฉพาะสัมพัทธ์กับ $2541$
 \end{examplebox} 
 \solution   
 
 \newpage
+\section{ฟังก์ชันจำนวนเต็มมากสุด (greatest integer function)}
+\textbf{ฟังก์ชันจำนวนเต็มมากสุด} (greatest integer function) หรือ \textbf{ฟังก์ชันวงเล็บ} (bracket function) $\lfloor x \rfloor$ มีส่วนสำคัญอย่างยิ่งในการศึกษาปัญหาเกี่ยวกับการหารลงตัว ดังบทนิยามที่จะกล่าวต่อไปนี้ 
+\begin{definitionbox}
+	สำหรับจำนวนจริง $x$ ใด ๆ กำหนดให้ $\lfloor x \rfloor$ คือ \textbf{จำนวนเต็มมากสุดที่น้อยกว่าหรือเท่ากับ $x$} นั่นคือ 
+	\[ x - 1 < \lfloor x \rfloor \leq x \]
+\end{definitionbox}
+
+\begin{examplebox}
+	ตัวอย่างการหาค่าฟังก์ชันจำนวนเต็มมากสุด:
+	\[ \left\lfloor -\dfrac{3}{2} \right\rfloor = -2, \quad \lfloor \sqrt{2} \rfloor = 1, \quad \left\lfloor -\dfrac{5}{2} \right\rfloor = -3, \quad \lfloor -\pi \rfloor = -4 \]
+	ในกรณีที่ $x$ เป็นจำนวนเต็ม จะได้ว่า $\lfloor x \rfloor = x$
+\end{examplebox}
+
+\remark จากบทนิยามของฟังก์ชันจำนวนเต็มมากสุด สำหรับจำนวนจริง $x$ ใด ๆ จะสามารถเขียนให้อยู่ในรูป
+\[ x = \lfloor x \rfloor + \theta \]
+โดยที่ $0 \leq \theta < 1$ 
+
+\begin{theorembox}
+	ให้ $x, y$ เป็นจำนวนจริงใด ๆ และ $n$ เป็นจำนวนเต็ม จะได้ว่า
+	\begin{enumerate}
+		\item $\lfloor x + n \rfloor = \lfloor x \rfloor + n$
+		\item $\lfloor x + y \rfloor \geq \lfloor x \rfloor + \lfloor y \rfloor$
+		\item $\lfloor x \rfloor + \lfloor -x \rfloor = 
+		\begin{cases} 
+			0 & \text{ถ้า $x$ เป็นจำนวนเต็ม} \\ 
+			-1 & \text{ถ้า $x$ ไม่เป็นจำนวนเต็ม} 
+		\end{cases}$
+		\item $\left\lfloor \dfrac{x}{n} \right\rfloor = \left\lfloor \dfrac{\lfloor x \rfloor}{n} \right\rfloor$
+	\end{enumerate}
+\end{theorembox}
+
+\newpage
+\begin{examplebox}
+	ตัวอย่างการประยุกต์ใช้สมบัติของฟังก์ชันจำนวนเต็มมากสุด:
+	\begin{enumerate}
+		\item $\lfloor 2.5 + 5 \rfloor = \lfloor 2.5 \rfloor + 5 = 2 + 5 = 7$
+		\item $\lfloor 2.5 + 3.5 \rfloor \geq \lfloor 2.5 \rfloor + \lfloor 3.5 \rfloor \implies \lfloor 6.0 \rfloor \geq 2 + 3 \implies 6 \geq 5$
+		\item การพิจารณาค่าร่วมกับตัวผกผันการบวก:
+		\begin{align*}
+			\lfloor 2 \rfloor + \lfloor -2 \rfloor &= 2 + (-2) = 0 \\
+			\lfloor 2 \rfloor + \lfloor -2.5 \rfloor &= 2 + (-3) = -1
+		\end{align*}
+		\item $\left\lfloor \dfrac{5.2}{2} \right\rfloor = \left\lfloor \dfrac{\lfloor 5.2 \rfloor}{2} \right\rfloor \implies \lfloor 2.6 \rfloor = \left\lfloor \dfrac{5}{2} \right\rfloor \implies 2 = 2$
+	\end{enumerate}
+\end{examplebox}
+
+\begin{examplebox}
+	จงหาค่าของ $\displaystyle \sum_{k=1}^{\infty} \left\lfloor \dfrac{50}{2^k} \right\rfloor$ 
+\end{examplebox}
+	\solution เนื่องจากหากค่า $2^k > 50$ จะทำให้ค่าของฟังก์ชันจำนวนเต็มมากสุดเป็น $0$ เราจึงพิจารณาผลบวกจำกัดพจน์ดังนี้:
+\begin{align*}
+	\sum_{k=1}^{\infty} \left\lfloor \dfrac{50}{2^k} \right\rfloor &= \left\lfloor \dfrac{50}{2^1} \right\rfloor + \left\lfloor \dfrac{50}{2^2} \right\rfloor + \left\lfloor \dfrac{50}{2^3} \right\rfloor + \left\lfloor \dfrac{50}{2^4} \right\rfloor + \left\lfloor \dfrac{50}{2^5} \right\rfloor + \left\lfloor \dfrac{50}{2^6} \right\rfloor + \cdots \\
+	&= \lfloor 25 \rfloor + \lfloor 12.5 \rfloor + \lfloor 6.25 \rfloor + \lfloor 3.125 \rfloor + \lfloor 1.5625 \rfloor + \lfloor 0.78125 \rfloor + 0 + \cdots \\
+	&= 25 + 12 + 6 + 3 + 1 + 0 \\
+	&= 47
+\end{align*}
+นั่นคือ ค่าของอนุกรมนี้เท่ากับ $47$
+
+\newpage
+\begin{theorembox}
+	\textbf{สูตรของเดอโพลิกแนค (De Polignac's Formula)} \\
+	ถ้า $n$ เป็นจำนวนเต็มบวก และ $p$ เป็นจำนวนเฉพาะ จะได้ว่ากำลังสูงสุดของ $p$ ที่ทำให้ $p^{e_p} \mid n!$ มีค่าเลขชี้กำลัง $e_p$ คือ
+	\[ e_p = \sum_{k=1}^{\infty} \left\lfloor \dfrac{n}{p^k} \right\rfloor \]
+\end{theorembox}
+
+\begin{remarkbox}
+	ผลจากทฤษฎีบทของเดอโพลิกแนค ทำให้เราได้สูตรการเขียน $n!$ ในรูปผลคูณของจำนวนเฉพาะ ซึ่งเรียกว่า \textbf{สูตรของเลอญ็องดร์ (Legendre's Formula)} ดังนี้
+\[ n! = \displaystyle\prod_{p \leq n} p^{\displaystyle\sum_{k=1}^{\infty} \left\lfloor \dfrac{n}{p^k} \right\rfloor} \]
+\end{remarkbox}
+
+\begin{examplebox}
+	จงเขียน $20!$ เป็นผลคูณของจำนวนเฉพาะ (ในรูปแบบบัญญัติ) 
+\end{examplebox}
+	\solution จำนวนเฉพาะ $p$ ที่มีค่าไม่เกิน $20$ ได้แก่ $2, 3, 5, 7, 11, 13, 17$ และ $19$ 
+	
+เราจะคำนวณหากำลังสูงสุด $e_p$ ของแต่ละจำนวนเฉพาะโดยใช้สูตรของเดอโพลิกแนค ดังนี้:
+\begin{align*}
+	e_2 &= \left\lfloor \dfrac{20}{2^1} \right\rfloor + \left\lfloor \dfrac{20}{2^2} \right\rfloor + \left\lfloor \dfrac{20}{2^3} \right\rfloor + \left\lfloor \dfrac{20}{2^4} \right\rfloor = 10 + 5 + 2 + 1 = 18 \\
+	e_3 &= \left\lfloor \dfrac{20}{3^1} \right\rfloor + \left\lfloor \dfrac{20}{3^2} \right\rfloor = 6 + 2 = 8 \\
+	e_5 &= \left\lfloor \dfrac{20}{5^1} \right\rfloor = 4 \\
+	e_7 &= \left\lfloor \dfrac{20}{7^1} \right\rfloor = 2 \\
+	e_{11} &= \left\lfloor \dfrac{20}{11^1} \right\rfloor = 1, \quad e_{13} = \left\lfloor \dfrac{20}{13^1} \right\rfloor = 1, \quad e_{17} = \left\lfloor \dfrac{20}{17^1} \right\rfloor = 1, \quad e_{19} = \left\lfloor \dfrac{20}{19^1} \right\rfloor = 1
+\end{align*}
+ดังนั้น นำเลขชี้กำลังเขียนประกอบรูปแยกตัวประกอบตามสูตรของเลอญ็องดร์ จะได้
+\[ 20! = 2^{18} \cdot 3^8 \cdot 5^4 \cdot 7^2 \cdot 11 \cdot 13 \cdot 17 \cdot 19 \]
+
+\newpage
+\begin{examplebox}
+	จงหาค่า $e_3$ ที่มากที่สุด ที่ทำให้ $3^{e_3} \mid 60!$ 
+\end{examplebox}
+	\solution เนื่องจาก $3$ เป็นจำนวนเฉพาะ โดยสูตรของเดอโพลิกแนค จะได้ว่า
+\begin{align*}
+	e_3 &= \sum_{k=1}^{\infty} \left\lfloor \dfrac{60}{3^k} \right\rfloor \\
+	&= \left\lfloor \dfrac{60}{3^1} \right\rfloor + \left\lfloor \dfrac{60}{3^2} \right\rfloor + \left\lfloor \dfrac{60}{3^3} \right\rfloor + \left\lfloor \dfrac{60}{3^4} \right\rfloor + \cdots \\
+	&= 20 + 6 + 2 + 0 + \cdots \\
+	&= 28
+\end{align*}
+นั่นคือ ค่า $e_3$ ที่มากที่สุดที่ทำให้ $3^{e_3} \mid 60!$ คือ $28$
+
+\newpage
+ในกรณีที่ฐานไม่ใช่จำนวนเฉพาะ เรายังคงสามารถหากำลังสูงสุดของฐานนั้นที่หาร $n!$ ลงตัวได้ โดยอาศัยการแยกตัวประกอบให้อยู่ในรูปฐานจำนวนเฉพาะก่อน ดังแสดงในตัวอย่างต่อไปนี้ 
+\begin{examplebox}
+	จงหาจำนวนเต็ม $k$ ที่มากที่สุดที่ทำให้ $18^k \mid 100!$ 
+\end{examplebox}
+\solution เนื่องจาก $18 = 2 \cdot 3^2$ ซึ่งประกอบด้วยจำนวนเฉพาะ $2$ และ $3$ \\
+เราจะพิจารณากำลังสูงสุดของจำนวนเฉพาะ $2$ และ $3$ ใน $100!$ โดยสูตรของเดอโพลิกแนค ดังนี้
+\begin{align*}
+	e_2 &= \sum_{i=1}^{\infty} \left\lfloor \dfrac{100}{2^i} \right\rfloor \\
+	&= \left\lfloor \dfrac{100}{2^1} \right\rfloor + \left\lfloor \dfrac{100}{2^2} \right\rfloor + \left\lfloor \dfrac{100}{2^3} \right\rfloor + \left\lfloor \dfrac{100}{2^4} \right\rfloor + \left\lfloor \dfrac{100}{2^5} \right\rfloor + \left\lfloor \dfrac{100}{2^6} \right\rfloor + \cdots \\
+	&= 50 + 25 + 12 + 6 + 3 + 1 \\
+	&= 97 \\[0.8em]
+	e_3 &= \sum_{i=1}^{\infty} \left\lfloor \dfrac{100}{3^i} \right\rfloor \\
+	&= \left\lfloor \dfrac{100}{3^1} \right\rfloor + \left\lfloor \dfrac{100}{3^2} \right\rfloor + \left\lfloor \dfrac{100}{3^3} \right\rfloor + \left\lfloor \dfrac{100}{3^4} \right\rfloor + \cdots \\
+	&= 33 + 11 + 3 + 1 \\
+	&= 48
+\end{align*}
+จากผลลัพธ์ข้างต้น รูปแบบบัญญัติของ $100!$ จะเขียนได้เป็น $100! = 2^{97} \cdot 3^{48} \cdot 5^{e_5} \cdots p_m^{e_{p_m}}$ \\
+เนื่องจากเราต้องการสร้างกลุ่มของ $18 = 2 \cdot 3^2$ จึงพิจารณาการจัดรูปเลขชี้กำลังดังนี้
+\begin{align*}
+	2^{97} \cdot 3^{48} &= 2^{73} \cdot 2^{24} \cdot (3^2)^{24} \\
+	&= 2^{73} \cdot (2 \cdot 3^2)^{24} \\
+	&= 2^{73} \cdot (18)^{24}
+\end{align*}
+จากการเปรียบเทียบ จะเห็นว่าจำนวนเฉพาะ $3$ เป็นตัวจำกัดในการสร้างกลุ่มของ $18$ \\
+นั่นคือ จำนวนเต็ม $k$ ที่มากที่สุดที่ทำให้ $18^k \mid 100!$ คือ $k = 24$ 
+
+\newpage
+\section{ทฤษฎีบทของออยเลอร์และแฟร์มาต์}
+
 \begin{theorembox}[ทฤษฎีบทของออยเลอร์ (Euler’s Theorem)]
 	ถ้า $a$ เป็นจำนวนเต็ม และ $n$ เป็นจำนวนนับ โดยที่ $(a,n)=1$ แล้วเราจะได้ว่า
 	\[a^{\phi(n)}\equiv 1(\bmod n)\]
@@ -306,6 +593,11 @@
 	ถ้า $p$ เป็นจำนวนเฉพาะ และ $a$ เป็นจำนวนเต็ม โดยที่ $p \nmid a$ แล้วเราจะได้ว่า
 	\[a^{p-1}\equiv 1(\bmod p)\]
 \end{theorembox}
+
+\begin{corollarybox}
+	ให้ $p$ เป็นจำนวนเฉพาะ และ $a$ เป็นจำนวนเต็มใด ๆ จะได้ว่า 
+	\[ a^p \equiv a \pmod{p} \]
+\end{corollarybox}
 
 \begin{examplebox}
 	จงหาเศษเหลือจากการหาร $3^{1000}$ ด้วย $17$ 
@@ -337,7 +629,32 @@
 \end{examplebox}
 \solution
 \newpage
+\begin{theorembox} \label{theorem3.17}
+	ถ้า $p$ และ $q$ เป็นจำนวนเฉพาะที่ต่างกัน ซึ่ง $a^q \equiv a \pmod{p}$ และ $a^p \equiv a \pmod{q}$ แล้ว 
+	\[ a^{pq} \equiv a \pmod{pq} \]
+\end{theorembox}
 
+\begin{examplebox}
+	จงแสดงว่า $2^{340} \equiv 1 \pmod{341}$ 
+\end{examplebox}
+	\solution เนื่องจาก $341 = 11 \times 31$ และจากทฤษฎีบทหลักมูลการหารลงตัวพิจารณา $2^{10} = 1024$ 
+
+เมื่อหารด้วย $31$ จะได้ $1024 = 31 \times 33 + 1$ แสดงว่า $2^{10} \equiv 1 \pmod{31}$ \\
+เมื่อหารด้วย $11$ จะได้ $1024 = 11 \times 93 + 1$ แสดงว่า $2^{10} \equiv 1 \pmod{11}$
+
+จากสมบัติดังกล่าว สามารถจัดรูปตามเงื่อนไขของทฤษฎีบท \ref{theorem3.17} ได้ดังนี้
+\begin{enumerate}
+	\item พิจารณาในมอดุโล $31$:
+	\[ 2^{11} = 2 \cdot 2^{10} \equiv 2 \cdot 1 \equiv 2 \pmod{31} \]
+	\item พิจารณาในมอดุโล $11$:
+	\[ 2^{31} = 2 \cdot (2^{10})^3 \equiv 2 \cdot 1^3 \equiv 2 \pmod{11} \]
+\end{enumerate}
+เนื่องจาก $2^{11} \equiv 2 \pmod{31}$ และ $2^{31} \equiv 2 \pmod{11}$ โดยทฤษฎีบท \ref{theorem3.17} จะได้ว่า
+\[ 2^{11 \cdot 31} \equiv 2 \pmod{11 \cdot 31} \quad \Rightarrow \quad 2^{341} \equiv 2 \pmod{341} \]
+เนื่องจาก $(2, 341) = 1$ โดยสมบัติการตัดออกของคอนกรูเอนซ์ (หรือหารด้วย $2$ ทั้งสองข้าง) จะได้
+\[ 2^{340} \equiv 1 \pmod{341}\]
+
+\newpage
 \begin{definitionbox}[แฟกทอเรียล]
 	สำหรับจำนวนเต็มบวก \(n\)
 	\[
@@ -359,6 +676,7 @@
 	\end{enumerate}    
 \end{examplebox}
 
+\section{ทฤษฎีบทของวิลสัน}
 \begin{theorembox}[ทฤษฎีบทของวิลสัน (Wilsons Theorem)]
 	ให้ $p$ เป็นจำนวนเฉพาะ แล้วเราจะได้ว่า
 	\[(p-1)!\equiv -1(\bmod p)\]
@@ -387,3 +705,20 @@
 	จงหาเศษเหลือจากการหาร $33^{144}+(12!)^{33}$ ด้วย $13$
 \end{examplebox}
 \solution
+\newpage
+\begin{examplebox}
+	จงหาเศษที่เกิดจากการหาร $15!$ ด้วย $17$ 
+\end{examplebox}
+	\solution เนื่องจาก $17$ เป็นจำนวนเฉพาะ โดยทฤษฎีบทของวิลสัน (Wilson's Theorem) จะได้ว่า
+\[ 16! \equiv -1 \pmod{17} \]
+เนื่องจาก $16! = 16 \cdot 15!$ และเราทราบว่า $16 \equiv -1 \pmod{17}$ จะได้
+\[ -1 \cdot 15! \equiv -1 \pmod{17} \]
+คูณด้วย $-1$ ทั้งสองข้างของสมการคอนกรูเอนซ์ จะได้
+\[ 15! \equiv 1 \pmod{17} \]
+นั่นคือ เศษที่เกิดจากการหาร $15!$ ด้วย $17$ คือ $1$
+
+\begin{examplebox}
+	จงแสดงว่า $18! \equiv -1 \pmod{437}$ 
+\end{examplebox}
+\solution
+\newpage

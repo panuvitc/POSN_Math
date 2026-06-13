@@ -59,16 +59,16 @@
 % ตั้งค่าฟอนต์ Mathematics
 %\usepackage{unicode-math}
 %\usepackage{gfsneohellenicot}
-\usepackage{unicode-math} 
-\setmainfont{GFS Neohellenic}[Scale=1.3]
-\setmathfont{GFS Neohellenic Math}[Scale=1.3]
+%\usepackage{unicode-math} 
+%\setmainfont{GFS Neohellenic}[Scale=1.3]
+%\setmathfont{GFS Neohellenic Math}[Scale=1.3]
 % ตั้งค่าฟอนต์หลักเป็น GFS Neohellenic สำหรับภาษาอังกฤษ
 
 
 
-%\DeclareMathSizes{12}{14}{10}{7} % ใช้ปรับขนาดฟอนต์ Math
-%\usepackage{concmath}
-%\usepackage[OT1]{fontenc}
+\DeclareMathSizes{12}{14}{10}{7} % ใช้ปรับขนาดฟอนต์ Math
+\usepackage{concmath}
+\usepackage[OT1]{fontenc}
 
 
 %\usepackage{pxfonts}
@@ -289,11 +289,17 @@ Scale = 1.5
 \definecolor{magentaprocess}{rgb}{1.0, 0.0, 0.56} 
 \definecolor{asparagus}{rgb}{0.53, 0.66, 0.42}
 
+\newcounter{lemma}[chapter]
+\renewcommand{\thelemma}{\thechapter.\arabic{lemma}}
+
 \newcounter{definition}[chapter]
 \renewcommand{\thedefinition}{\thechapter.\arabic{definition}}
 
 \newcounter{theorem}[chapter]
 \renewcommand{\thetheorem}{\thechapter.\arabic{theorem}}
+
+\newcounter{corollary}[chapter]
+\renewcommand{\thecorollary}{\thechapter.\arabic{corollary}}
 
 \newcounter{example}[chapter]
 \renewcommand{\theexample}{\thechapter.\arabic{example}}
@@ -310,9 +316,36 @@ Scale = 1.5
 \newcounter{concept}[chapter]
 \renewcommand{\theconcept}{\thechapter.\arabic{concept}}
 
-% ==========================================
-% 5. สภาพแวดล้อมกล่องแบบต่าง ๆ (Environments)
-% ==========================================
+
+% ประกาศสี Beaver ด้วยโมเดล rgb ตามที่คุณกำหนดไว้เดิม
+\definecolor{beaver}{rgb}{0.62, 0.51, 0.44}
+\newenvironment{lemmabox}[1][]{%
+	\refstepcounter{lemma}%
+	\begin{tcolorbox}[
+		enhanced, breakable,
+		before skip=14pt, after skip=14pt,
+		% 🛠️ ปรับสีพื้นหลังให้เป็นสีน้ำตาลอ่อนจางๆ ละมุนสายตา ล้อไปกับสีหลักของกล่อง
+		colback=beaver!7!white,               
+		colframe=beaver,                       % สีกรอบหลักสีน้ำตาล Beaver
+		sharp corners,
+		boxrule=0.8pt,                         % ความหนากรอบมาตรฐานเท่ากับกล่องอื่นในเล่ม
+		left=12pt, right=12pt, top=14pt, bottom=12pt,
+		% Layout ป้ายหัวเรื่องอยู่กึ่งกลางด้านบนกล่อง
+		attach boxed title to top center={yshift=-3mm, yshifttext=-1mm},
+		boxed title style={
+			sharp corners,
+			colback=beaver,                    % สีป้ายหัวเรื่องสีเข้ม
+			colframe=beaver,
+			left=15pt, right=15pt, top=3pt, bottom=3pt
+		},
+		title={บทตั้ง~\thelemma\if\relax\detokenize{#1}\relax\else: #1\fi},
+		fonttitle=\bfseries\normalsize\color{white}, % ตัวหนังสือบนป้ายสีขาว คมชัด อ่านง่าย
+		% ใส่เงาเยื้องขวาล่างแบบคลาสสิก
+		fuzzy shadow={0.8mm}{-0.8mm}{0mm}{0.5mm}{black!15}
+		]
+	}{%
+	\end{tcolorbox}
+}
 
 \newenvironment{definitionbox}[1][]{%
 	\refstepcounter{definition}%
@@ -347,6 +380,34 @@ Scale = 1.5
 		boxrule=1.2pt, arc=0mm, 
 		shadow={3.5mm}{-2mm}{0mm}{black!15}, % ปรับเงาให้นุ่มนวลขึ้นเล็กน้อยด้วย black!15
 		title={\textcolor{white}{ทฤษฎีบท~\thetheorem\if\relax\detokenize{#1}\relax\else: #1\fi}},
+		]
+	}{%
+	\end{tcolorbox}
+}
+
+% นิยามสีกรมท่าพรีเมียมสำหรับบทแทรก
+% ประกาศสีด้วยโมเดล rgb ตามที่คุณต้องการ
+% ประกาศสีด้วยโมเดล rgb
+% ดึงสีแดงทับทิมเดิมของคุณมาใช้เป็นสารตั้งต้น
+% นิยามสีเขียวป่าลึกพรีเมียม (หรูหรา ไม่ซ้ำ และตัดกับสีแดงทับทิมได้สวยงาม)
+\definecolor{CorollaryGreen}{RGB}{20, 90, 50}
+
+\newenvironment{corollarybox}[1][]{%
+	\refstepcounter{corollary}%
+	\begin{tcolorbox}[
+		enhanced, breakable,
+		before skip=14pt, after skip=14pt,
+		colback=CorollaryGreen!5!white,        % พื้นหลังสีเขียวพาสเทลจางมากๆ ละมุนสายตา
+		colframe=CorollaryGreen,               % เส้นหลักขอบซ้ายสีเขียวป่าลึก
+		sharp corners,
+		boxrule=0pt, leftrule=4.5pt,            % Layout แถบขอบซ้ายแนวโมเดิร์น
+		left=12pt, right=12pt, top=10pt, bottom=10pt,
+		% 🛠️ หัวเรื่องใช้สีเขียวเข้มตัวหนา ขยายใหญ่ คมกริบและเด่นชัดแน่นอน
+		title={\textcolor{CorollaryGreen}{บทแทรก~\thecorollary\if\relax\detokenize{#1}\relax\else: #1\fi}},
+		attach title to upper,
+		fonttitle=\bfseries\large,             
+		after title={\par\medskip\noindent},    
+		fuzzy shadow={0mm}{-0.5mm}{0mm}{0.5mm}{black!6}
 		]
 	}{%
 	\end{tcolorbox}
@@ -518,6 +579,7 @@ Scale = 1.5
 % เปลี่ยนชื่อเป็น \mysol
 % วางไว้ใน Preamble ของคุณ (ข้างนอก \makeatletter)
 \newcommand{\solution}{%
+	\noindent
 	\tcbox[
 	enhanced,
 	on line,
@@ -529,26 +591,27 @@ Scale = 1.5
 	coltext=black,
 	boxrule=0.8pt,
 	left=4pt, right=4pt, top=2pt, bottom=2pt,
-	shadow={1mm}{-1mm}{0mm}{black!30},
+	shadow={0.5mm}{-0.5mm}{0mm}{black!20},
 	% เพิ่มบรรทัดนี้ครับ: เว้นระยะห่างจากกล่องไปยังตัวหนังสือที่อยู่ถัดไป
 	after={\hspace{0.5em}} 
 	]{วิธีทำ}%
 }
 
 \newcommand{\proof}{%
+	\noindent
 	\tcbox[
 	enhanced,
 	on line,
 	arc=0pt,
 	outer arc=0pt,
-	colback=blue!5!white,      % สีพื้นหลังเป็นสีฟ้าอ่อนๆ ให้ดูสบายตา (หรือเปลี่ยนเป็น white ได้ครับ)
-	colframe=blue!60!black,    % สีเส้นขอบเป็นสีฟ้าเข้ม
+	colback=blue!5!white,
+	colframe=blue!60!black,
 	fontupper=\bfseries,
-	coltext=blue!60!black,     % สีตัวหนังสือ "พิสูจน์" เป็นสีฟ้าเข้ม
+	coltext=blue!60!black,
 	boxrule=0.8pt,
 	left=4pt, right=4pt, top=2pt, bottom=2pt,
-	shadow={1mm}{-1mm}{0mm}{blue!20}, % เงาสีฟ้าจางๆ ให้เข้าธีมกัน
-	after={\hspace{0.5em}} 
+	shadow={0.5mm}{-0.5mm}{0mm}{black!20},
+	after={\hspace{0.5em}}
 	]{พิสูจน์}%
 }
 % =========================
@@ -612,11 +675,20 @@ Scale = 1.5
 	after skip=10pt
 }
 
-\newcommand{\remark}{\noindent\textbf{\textcolor{red}{หมายเหตุ}}\,\,}
+\newcommand{\remark}{\noindent\textbf{\textcolor{green!50!black}{หมายเหตุ}}\,\,}
 \newcommand{\observation}{\noindent\textbf{\textcolor{blue}{ข้อสังเกต}}\,\,}
+
+\usepackage[normalem]{ulem}
+\newcommand{\warning}{%
+	\noindent\textbf{\textcolor{red!75!black}{\uline{ข้อควรระวัง !}}}\,\,}
 %\definecolor{darkblue}{HTML}{004080} % กำหนดสีฟ้าเข้มเอง
 %\newcommand{\proof}{\noindent\textbf{\textcolor{darkblue}{พิสูจน์:}}\,\,}
 
+
+%\includeonly{chapter1}
+%\includeonly{chapter2}
+%\includeonly{chapter3}
+\includeonly{chapter4}
 % ==========================================
 % เริ่มต้นเนื้อหาเอกสารหลัก
 % ==========================================
